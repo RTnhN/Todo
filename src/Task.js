@@ -7,6 +7,7 @@ class Task {
   endDate;
   description;
   status;
+  priority;
   constructor(properties){
     this.id = short.generate();
     this.name = "";
@@ -14,6 +15,7 @@ class Task {
     this.endDate = "";
     this.description = "";
     this.status = "";
+    this.priority = "";
     this.updateTask(properties);
   }
   updateTask(properties){

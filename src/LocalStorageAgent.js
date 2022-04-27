@@ -6,11 +6,11 @@ class LocalStorageAgent {
     window.localStorage.setItem("tasks", JSON.stringify(array));
   }
   unstore() {
-    let tasks = JSON.parse(window.localStorage.get("tasks"));
+    let tasks = JSON.parse(window.localStorage.getItem("tasks"));
     if (tasks === null) {
       return [];
     } else {
-      return tasks.map(task => Object.assign(this.classTemplate, task));
+      return tasks.map(task => Object.assign(new this.classTemplate(), task));
     }
   }
   clear() {

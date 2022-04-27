@@ -1,19 +1,18 @@
 class Database {
   tasks;
-  #localStorageAgent;
-  constructor(localStorageAgent) {
-    this.#localStorageAgent = localStorageAgent
-    this.tasks = [];
-    this.fromLocalStorage()
+  #storageAgent;
+  constructor(storageAgent) {
+    this.#storageAgent = storageAgent
+    this.tasks = this.readStorage();
 
   }
   addTask(newTask) {
     this.tasks.push(newTask);
-    this.toLocalStorage()
+    this.writeStorage()
   }
   deleteTask(id) {
     this.tasks = this.tasks.filter(task => task.id !== id);
-    this.toLocalStorage()
+    this.writeStorage()
   }
   updateTask(updatedTask) {
     const updatedTaskID = updatedTask.id;
@@ -23,14 +22,16 @@ class Database {
   getTask(id) {
     return this.tasks.filter(task => task.id === id);
   }
-  toLocalStorage(){
-    if (this.#localStorageAgent !== null) {
-      this.#localStorageAgent.store(this.tasks);
+  writeStorage() {
+    if (this.#storageAgent !== null) {
+      this.#storageAgent.store(this.tasks);
     }
   }
-  fromLocalStorage(){
-    if (this.#localStorageAgent !== null) {
-      this.tasks = this.#localStorageAgent.unstore();
+  readStorage() {
+    if (this.#storageAgent !== null) {
+      return this.#storageAgent.unstore();
+    } else
+      return []
   }
 }
 

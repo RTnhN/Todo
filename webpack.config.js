@@ -1,10 +1,9 @@
 const path = require("path");
-const yamljs = require('yamljs');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/index.js",
   output: {
     filename: "main.js",
@@ -30,13 +29,6 @@ module.exports = {
       test:/\.(woff|woff2|eot|ttf|otf)$/i,
       type: "asset/resource",
     },
-      {
-        test:/\.yaml$/i,
-        type:'json',
-        parser:{
-          parse: yamljs.parse,
-        },
-      },
     ],
   },
   plugins: [
