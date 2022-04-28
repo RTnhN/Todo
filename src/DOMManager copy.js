@@ -11,50 +11,56 @@ class DOMManager {
     this.#headerElement = document.createDocumentFragment();
     this.#mainElement = document.createDocumentFragment();
     this.#footerElement = document.createDocumentFragment();
-    this.#contentElement.appendChild(document.createElement("header"));
-    this.#contentElement.lastChild.id = "header";
-    this.#contentElement.appendChild(document.createElement("div"));
-    this.#contentElement.lastChild.id = "main";
-    this.#contentElement.appendChild(document.createElement("footer"));
-    this.#contentElement.lastChild.id = "footer";
+
   }
   makeHeader() {
     this.#headerElement.appendChild(document.createElement("div"));
     this.#headerElement.lastChild.id = "addTaskContainer";
-    const addTaskContainer = this.#headerElement.lastChild;
-    addTaskContainer.appendChild(document.createElement("button"));
-    addTaskContainer.lastChild.id = "expandForm";
-    addTaskContainer.lastChild.textContent = "↓";
-    addTaskContainer.appendChild(document.createElement("input"));
-    addTaskContainer.lastChild.id = "taskName";
-    addTaskContainer.lastChild.type = "text";
-    addTaskContainer.lastChild.name = "name";
-    addTaskContainer.lastChild.setAttribute("form", "newTaskForm");
-    addTaskContainer.appendChild(document.createElement("input"));
-    addTaskContainer.lastChild.id = "createNewTask";
-    addTaskContainer.lastChild.type = "submit";
-    addTaskContainer.lastChild.value = "+";
-    addTaskContainer.lastChild.setAttribute("form", "newTaskForm");
+    this.#headerElement.lastChild.appendChild(document.createElement("div"));
+    const addTaskContainerFixed = this.#headerElement.lastChild.lastChild;
 
-    this.#headerElement.appendChild(document.createElement("form"));
-    const newTaskForm = this.#headerElement.lastChild;
+    addTaskContainerFixed.appendChild(document.createElement("button"));
+    addTaskContainerFixed.lastChild.id = "expandForm";
+    addTaskContainerFixed.lastChild.classList.add("material-symbols-outlined");
+    addTaskContainerFixed.lastChild.textContent = "expand_more";
+
+    addTaskContainerFixed.appendChild(document.createElement("input"));
+    addTaskContainerFixed.lastChild.id = "taskName";
+    addTaskContainerFixed.lastChild.type = "text";
+    addTaskContainerFixed.lastChild.name = "name";
+    addTaskContainerFixed.lastChild.setAttribute("form", "newTaskForm");
+
+    addTaskContainerFixed.appendChild(document.createElement("input"));
+    addTaskContainerFixed.lastChild.id = "createNewTask";
+    addTaskContainerFixed.lastChild.type = "submit";
+    addTaskContainerFixed.lastChild.value = "add";
+    addTaskContainerFixed.lastChild.classList.add("material-symbols-outlined");
+    addTaskContainerFixed.lastChild.setAttribute("form", "newTaskForm");
+
+    this.#headerElement.lastChild.appendChild(document.createElement("form"));
+    const newTaskForm = this.#headerElement.lastChild.lastChild;
     newTaskForm.id = "newTaskForm";
     newTaskForm.classList.add("hidden");
-    newTaskForm.appendChild(document.createElement("input"));
+    newTaskForm.style.display = "none";
+
+    newTaskForm.appendChild(document.createElement("textarea"));
     newTaskForm.lastChild.id = "description";
     newTaskForm.lastChild.placeholder = "Description";
-    newTaskForm.lastChild.type = "text";
+    newTaskForm.lastChild.onkeyup =  this.textAreaAdjust;
     newTaskForm.lastChild.name = "description";
+
     newTaskForm.appendChild(document.createElement("input"));
     newTaskForm.lastChild.id = "startDate";
     newTaskForm.lastChild.placeholder = "Start Date";
     newTaskForm.lastChild.type = "date";
     newTaskForm.lastChild.name = "startDate"
+
     newTaskForm.appendChild(document.createElement("input"));
     newTaskForm.lastChild.id = "EndDate";
     newTaskForm.lastChild.placeholder = "End Date";
     newTaskForm.lastChild.type = "date";
     newTaskForm.lastChild.name = "endDate";
+
     document.getElementById("header").appendChild(this.#headerElement);
     document.getElementById("expandForm").addEventListener("click", this.toggleHideForm.bind(this));
   }
@@ -62,8 +68,10 @@ class DOMManager {
     const newTaskForm = document.getElementById("newTaskForm");
     if (newTaskForm.style.display === "flex") {
       newTaskForm.style.display = "none";
+      document.getElementById("expandForm").textContent = "expand_more";
     } else {
       newTaskForm.style.display = "flex";
+      document.getElementById("expandForm").textContent = "expand_less";
     }
   }
   makeList(tasks) {
@@ -78,6 +86,7 @@ class DOMManager {
     this.#targetElement.appendChild(document.createElement("div"))
     this.#targetElement = this.#targetElement.lastChild;
     this.#targetElement.className = "task";
+    this.#targetElement.id = task.id;
     Object.entries(task).forEach(this.makeProperty.bind(this));
     this.#targetElement = this.#targetElement.parentElement;
 
@@ -85,16 +94,26 @@ class DOMManager {
   makeProperty(data) {
     if (data[0] === "id") return
     this.#targetElement.appendChild(document.createElement("div"))
-    this.#targetElement.lastChild.textContent = `${data[0]}:  ${data[1]}`;
     if (data[0] !== "name") {
+      this.#targetElement.lastChild.textContent = `${data[1]}`;
       this.#targetElement.lastChild.classList.add("shrinkable");
       this.#targetElement.lastChild.classList.add("hidden");
     } else {
-      this.#targetElement.firstChild.addEventListener("click", this.hideOtherParameters)
+      this.#targetElement.lastChild.classList.add("taskName");
+      this.#targetElement.lastChild.appendChild(document.createElement("button"));
+      this.#targetElement.lastChild.lastChild.classList.add("material-symbols-outlined");
+      this.#targetElement.lastChild.lastChild.classList.add("deleteButton");
+      this.#targetElement.lastChild.lastChild.textContent = "delete";
+      this.#targetElement.lastChild.lastChild.classList.add("fancyHidden");
+      this.#targetElement.lastChild.appendChild(document.createElement("p"));
+      this.#targetElement.lastChild.lastChild.textContent = `${data[1]}`;
+      this.#targetElement.firstChild.addEventListener("click", this.hideOtherParameters);
+      this.#targetElement.firstChild.addEventListener("mouseenter", (e)=>e.target.firstChild.classList.remove("fancyHidden"));
+      this.#targetElement.firstChild.addEventListener("mouseleave", (e)=>e.target.firstChild.classList.add("fancyHidden"));
     }
   }
   hideOtherParameters(e) {
-    const shrinkable = e.target.parentElement.querySelectorAll(".shrinkable");
+    const shrinkable = document.querySelectorAll(".shrinkable");
     shrinkable.forEach(element => element.classList.contains("hidden") ? element.classList.remove("hidden") : element.classList.add("hidden"));
   }
   clearList() {
@@ -102,7 +121,7 @@ class DOMManager {
       document.getElementById("main").removeChild(document.getElementById("main").firstChild);
     }
   }
-}
 
+}
 
 export default DOMManager;

@@ -1,8 +1,144 @@
-.hidden{
-  display:none;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --todoBlue: hsl(220, 80%, 50%);
+}
+
+/* header */
+
+header{
+  height: 4em;
+  padding: .5em;
+  background-color: hsl(220, 80%, 50%);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#addTaskContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  gap: 10px;
+  position: fixed;
+}
+
+#addTaskContainer div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+#addTaskContainer button{
+  background: white;
+  border:none;
+  border-radius: 25px;
+  width: 30px;
+  height: 30px;
+  color: hsl(220, 80%, 50%);
+  flex-shrink: 0;
+}
+
+#addTaskContainer>div>input[type="text"]{
+  border: 1px solid white;
+  border-radius: 25px;
+  padding-left: 10px;
+  width: 200px;
+  height: 30px;
+}
+
+
+#addTaskContainer>div>input[type="submit"]{
+  background: white;
+  border:none;
+  border-radius: 25px;
+  width: 30px;
+  height: 30px;
+  color: var(--todoBlue);
+  flex-shrink: 0;
 }
 
 #newTaskForm{
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  border-radius: 25px;
+  width: 200px;
+}
+
+#newTaskForm>input[type="date"]{
+padding-right: 25px;
+}
+
+#newTaskForm input, #newTaskForm textarea{
+  box-sizing: content-box;
+  border: 1px solid var(--todoBlue);
+  border-radius: 15px;
+  padding-left: 10px;
+  width: 200px;
+  height: 30px;
+}
+
+#newTaskForm textarea{
+  height: 60px;
+  overflow: wrap;
+  resize: none;
+  overflow:hidden;
+  padding-top:10px;
+}
+
+
+.hidden{
+  display:none;
+}
+
+
+form{
+  overflow-y: visible;
+  position: relative;
+  z-index: 999;
+}
+
+.taskName{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.deleteButton{
+  animation: showDelete 0.5s forwards;
+}
+.fancyHidden{
+  animation: hideDelete 0.5s forwards;
+}
+
+
+
+
+@keyframes hideDelete {
+  from {
+   opacity: 1;
+  }
+  to {
+  opacity: 0;
+  }
+  
+}
+
+@keyframes showDelete {
+  from {
+   opacity: 0;
+  }
+  to {
+  opacity: 1;
+  }
+  
 }
