@@ -8,6 +8,7 @@ class Task {
   description;
   status;
   priority;
+  parentProject;
   constructor(properties){
     this.id = short.generate();
     this.name = "";

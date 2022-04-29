@@ -1,20 +1,21 @@
 class LocalStorageAgent {
-  constructor(classTemplate) {
+  constructor(classTemplate, key) {
     this.classTemplate = classTemplate;
+    this.key = key;
   }
   store(array) {
-    window.localStorage.setItem("tasks", JSON.stringify(array));
+    window.localStorage.setItem(this.key, JSON.stringify(array));
   }
   unstore() {
-    let tasks = JSON.parse(window.localStorage.getItem("tasks"));
-    if (tasks === null) {
+    let blob = JSON.parse(window.localStorage.getItem(this.key));
+    if (blob === null) {
       return [];
     } else {
-      return tasks.map(task => Object.assign(new this.classTemplate(), task));
+      return blob.map(object => Object.assign(new this.classTemplate(), object));
     }
   }
   clear() {
-    localStorage.removeItem("tasks");
+    window.localStorage.removeItem(this.key);
   }
 }
 

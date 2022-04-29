@@ -1,30 +1,47 @@
 class Database {
-  tasks;
+  projects;
   #storageAgent;
   constructor(storageAgent) {
     this.#storageAgent = storageAgent
-    this.tasks = this.readStorage();
-
+    this.projects = this.readStorage();
   }
-  addTask(newTask) {
-    this.tasks.push(newTask);
+  addTask(task, project) {
+    this.projects[this.getProjectIndex(project)].addTask(task);
     this.writeStorage()
   }
-  deleteTask(id) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
+  deleteTask(task, project) {
+    this.projects[this.getProjectIndex(project)].removeTask(task);
     this.writeStorage()
   }
-  updateTask(updatedTask) {
-    const updatedTaskID = updatedTask.id;
-    const taskID = this.tasks.findIndex(task => task.id === updatedTaskID);
-    this.tasks[taskID].updateTask(updatedTask);
+  updateTask(task, project) {
+    this.projects[this.getProjectIndex(project)].updateTask(task);
+    this.writeStorage()
   }
-  getTask(id) {
-    return this.tasks.filter(task => task.id === id);
+  getProjectIndex(targetProject) {
+    return this.projects.findIndex(project => project.id === targetProject.id);
+  }
+  getProjectById(id) {
+    return this.projects.find(project => project.id === id)
+  }
+  addProject(targetProject) {
+    this.projects.push(targetProject);
+    this.writeStorage();
+  }
+  removeProject(targetProject) {
+    if (this.projects.length <= 1) {
+      this.projects = []
+    } else {
+      this.projects = this.projects.filter(project => project.id !== targetProject.id);
+    }
+    this.writeStorage();
+  }
+  updateProject(targetProject) {
+    this.projects[this.getProjectIndex(targetProject)].updateProject(targetProject);
+    this.writeStorage();
   }
   writeStorage() {
     if (this.#storageAgent !== null) {
-      this.#storageAgent.store(this.tasks);
+      this.#storageAgent.store(this.projects);
     }
   }
   readStorage() {
@@ -33,7 +50,9 @@ class Database {
     } else
       return []
   }
+  get lastProject(){
+    return this.projects[this.projects.length -1];
+  }
 }
-
 
 export default Database;
