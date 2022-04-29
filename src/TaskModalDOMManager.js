@@ -5,6 +5,7 @@ class TaskModalDOMManager {
   constructor(taskModalElement) {
     this.#taskModalElement = taskModalElement;
     this.#taskModalPlaceholder = document.createDocumentFragment();
+    this.make()
   }
   make() {
     this.#taskModalPlaceholder.appendChild(document.createElement("form"));
@@ -16,7 +17,7 @@ class TaskModalDOMManager {
     taskModalForm.lastChild.textContent = "New Task";
     taskModalForm.appendChild(document.createElement("input"));
     taskModalForm.lastChild.id = "taskModalTaskName";
-    taskModalForm.lastChild.value = "Task Name";
+    taskModalForm.lastChild.placeholder = "Task Name";
     taskModalForm.lastChild.name = "name";
     taskModalForm.appendChild(document.createElement("input"));
     taskModalForm.lastChild.id = "taskModalStartDate";

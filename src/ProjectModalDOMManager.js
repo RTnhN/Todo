@@ -5,9 +5,9 @@ class ProjectModalDOMManager {
   constructor(projectModalElement) {
     this.#projectModalElement = projectModalElement;
     this.#projectModalPlaceholder = document.createDocumentFragment();
+    this.make()
   }
-  make(project) {
-    this.targetProject = project;
+  make() {
     this.#projectModalPlaceholder.appendChild(document.createElement("form"));
     const projectModalForm = this.#projectModalPlaceholder.lastChild;
     projectModalForm.id = "projectModalForm";
@@ -17,7 +17,7 @@ class ProjectModalDOMManager {
     projectModalForm.lastChild.textContent = "Project";
     projectModalForm.appendChild(document.createElement("input"));
     projectModalForm.lastChild.id = "projectModalProjectName";
-    projectModalForm.lastChild.value = project.name;
+    projectModalForm.lastChild.value = "project name"
     projectModalForm.lastChild.name = "name";
     projectModalForm.appendChild(document.createElement("input"));
     projectModalForm.lastChild.id = "projectModalAcceptButton";

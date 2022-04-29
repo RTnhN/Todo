@@ -9,6 +9,7 @@ class HeaderDOMManager {
   constructor(headerElement) {
     this.#headerElement = headerElement;
     this.#headerPlaceholder = document.createDocumentFragment();
+    this.make()
 
   }
   make() {

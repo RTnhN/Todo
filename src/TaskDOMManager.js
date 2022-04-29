@@ -5,6 +5,7 @@ class TaskDOMManager {
   constructor(taskElement) {
     this.#tasksElement = taskElement;
     this.#tasksPlaceholder = document.createDocumentFragment();
+    this.make()
   }
   make() {
     this.#tasksPlaceholder.appendChild(document.createElement("div"));

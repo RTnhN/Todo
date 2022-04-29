@@ -5,6 +5,7 @@ class ProjectDOMManager {
   constructor(projectElement) {
     this.#projectsElement = projectElement;
     this.#projectsPlaceholder = document.createDocumentFragment();
+    this.make()
   }
   make() {
     this.#projectsPlaceholder.appendChild(document.createElement("p"));

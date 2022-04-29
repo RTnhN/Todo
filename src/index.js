@@ -39,19 +39,12 @@ const taskModalDOMManager = new TaskModalDOMManager(taskModalElement);
 const localStorageAgent = new LocalStorageAgent(Task, Project, "todo");
 const database = new Database(localStorageAgent);
 
-headerDOMManager.make()
-
-projectDOMManager.make();
 projectDOMManager.populateProjectsList(database.projects);
 
-taskDOMManager.make(database.projects[0].name);
 taskDOMManager.populateTasksList(database.projects[0]);
 projectDOMManager.projectNames[0].classList.add("active");
 
-projectModalDOMManager.make(database.projects[0]);
 projectModalDOMManager.updateTargetProject(database.projects[0]);
-
-taskModalDOMManager.make();
 
 
 projectDOMManager.newProjectButton.addEventListener("click", addProject);
