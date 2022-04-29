@@ -106,3 +106,5 @@ function addTask(e){
   taskModalDOMManager.form.reset()
 }
 
+taskModalDOMManager.cancelButton.addEventListener("click", ()=> taskModalElement.close())
+
