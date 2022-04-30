@@ -164,15 +164,14 @@ footer{
 #taskModal form{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
   grid-template-areas: 
   "title title"
-  "name name"
-  "startDate startDate"
-  "endDate endDate"
+  "nameLabel name"
+  "startDateLabel startDate"
+  "endDateLabel endDate"
   "makeTask cancel";
-  
-  align-items: center;
+  column-gap: 20px;
 }
 
 #taskModalTitle{
@@ -180,21 +179,38 @@ footer{
   justify-self: center;
   align-self: center;
   color: white;
+  font-size: 3em;
+}
+
+#taskModalTaskNameLabel{
+  grid-area: nameLabel;
+  justify-self: flex-end;
+  align-self: center;
 }
 #taskModalTaskName{
   grid-area: name;
-  justify-self: center;
+  justify-self: flex-start;
+  align-self: center;
+}
+#taskModalStartDateLabel{
+  grid-area: startDateLabel;
+  justify-self: flex-end;
   align-self: center;
 }
 #taskModalStartDate{
   grid-area: startDate;
-  justify-self: center;
+  justify-self: flex-start;
   align-self: center;
+}
 
+#taskModalEndDateLabel{
+  grid-area: endDateLabel;
+  justify-self: flex-end;
+  align-self: center;
 }
 #taskModalEndDate{
   grid-area: endDate;
-  justify-self: center;
+  justify-self: flex-start;
   align-self: center;
 
 }
@@ -204,18 +220,21 @@ footer{
   border:none;
   border: 1px solid white;
   color: white;
-  width: 100px;
+  width: 175px;
   justify-self: center;
-  align-self: center;
+  align-self: flex-end;
+  font-size: 2em;
 }
 #taskModalCancel{
   grid-area: cancel;
   background: none;
   border:1px solid white;
   color: white;
-  width: 100px;
+  width: 175px;
   justify-self: center;
-  align-self: center;
+  align-self: flex-end;
+  font-size: 2em;
+
 
 }
 
