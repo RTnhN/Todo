@@ -2,6 +2,7 @@ class TaskDOMManager {
   #tasksElement;
   #tasksPlaceholder;
   #tasksContainer
+  currentProject;
   constructor(taskElement) {
     this.#tasksElement = taskElement;
     this.#tasksPlaceholder = document.createDocumentFragment();
@@ -27,6 +28,7 @@ class TaskDOMManager {
     this.#tasksElement.appendChild(this.#tasksPlaceholder);
   }
   populateTasksList(project){
+    this.currentProject = project;
     document.querySelector("#tasksHeaderTitle").textContent = project.name;
     this.clearTasksList()
     project.tasks.forEach(this.createTask.bind(this))
@@ -35,6 +37,8 @@ class TaskDOMManager {
     this.#tasksContainer.appendChild(document.createElement("div"));
     const TaskDiv = this.#tasksContainer.lastChild;
     TaskDiv.id = task.id;
+    TaskDiv.appendChild(document.createElement("input"))
+    TaskDiv.lastChild.type="checkbox";
     TaskDiv.appendChild(document.createElement("p"));
     TaskDiv.lastChild.textContent = task.name;
   }
@@ -43,11 +47,23 @@ class TaskDOMManager {
       this.#tasksContainer.removeChild(this.#tasksContainer.firstChild);
     }
   }
+  deleteTask(id){
+    document.getElementById(id).remove()
+  }
+  
   get openProjectModalButton(){
     return document.getElementById("openProjectModal");
   }
   get createTaskButton(){
     return document.getElementById("newTaskButton");
+  }
+  // Might not need this method
+  get checkboxes(){
+    return document.querySelectorAll("#tasksContainer input");
+  }
+  get tasksContainer(){
+    return document.getElementById("tasksContainer");
+
   }
 }
 

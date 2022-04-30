@@ -13,6 +13,10 @@ class Database {
     this.projects[this.getProjectIndex(project)].removeTask(task);
     this.writeStorage()
   }
+  deleteTaskById(id, project){
+    this.projects[this.getProjectIndex(project)].removeTaskById(id);
+    this.writeStorage()
+  }
   updateTask(task, project) {
     this.projects[this.getProjectIndex(project)].updateTask(task);
     this.writeStorage()

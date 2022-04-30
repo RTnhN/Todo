@@ -91,7 +91,11 @@ header{
 #tasksHeaderTitle{
   font-size: 3em;
 }
-
+#tasksContainer>div{
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
 #openProjectModal{
   background: none;
   border:none;

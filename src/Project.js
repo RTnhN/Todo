@@ -14,6 +14,9 @@ class Project {
   removeTask(task){
     this.tasks = this.tasks.filter(item=> item.id !== task.id)
   }
+  removeTaskById(id){
+    this.tasks = this.tasks.filter(item=> item.id !== id)
+  }
   updateTask(updatedTask) {
     const updatedTaskID = updatedTask.id;
     const taskID = this.tasks.findIndex(task => task.id === updatedTaskID);

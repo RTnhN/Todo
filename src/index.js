@@ -106,5 +106,16 @@ function addTask(e){
   taskModalDOMManager.form.reset()
 }
 
+taskDOMManager.tasksContainer.addEventListener("change", deleteTask)
+
+function deleteTask(e){
+  const taskID = e.target.parentElement.id;
+  const project = taskDOMManager.currentProject;
+  database.deleteTaskById(taskID,project);
+  taskDOMManager.deleteTask(taskID);
+
+
+}
+
 taskModalDOMManager.cancelButton.addEventListener("click", ()=> taskModalElement.close())
 
