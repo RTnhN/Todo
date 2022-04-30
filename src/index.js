@@ -99,7 +99,7 @@ taskModalDOMManager.form.addEventListener("submit", addTask);
 
 function addTask(e){
   e.preventDefault();
-  const newTask = Object.fromEntries(new FormData(taskModalDOMManager.form));
+  const newTask = new Task(Object.fromEntries(new FormData(taskModalDOMManager.form)));
   database.addTask(newTask, projectModalDOMManager.targetProject);
   taskDOMManager.createTask(newTask);
   taskModalElement.close()
