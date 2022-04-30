@@ -8,15 +8,18 @@
 }
 
 :root{
-  --todoBlue: hsl(220, 80%, 50%);
+  --darkPrimary: hsl(0, 0%, 38%);
+  --darkAccent1: hsl(220, 3%, 21%);
+  --darkAccent2: hsl(0, 0%, 63%);
+  --darkAccent1Text: hsl(0, 0%, 85%);
 }
 /* contentNode */
 
 #content{
   height: 100vh;
   display:grid;
-  grid-template-columns: 20vw 1fr;
-  grid-template-rows: 30px 1fr 30px;
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: 50px 1fr 50px;
   grid-template-areas:
     "header header"
     "projectList taskList"
@@ -28,7 +31,7 @@
 header{
   grid-area: header;
   padding: .5em;
-  background-color: hsl(220, 80%, 50%);
+  background-color: var(--darkPrimary);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -44,7 +47,7 @@ header{
   grid-template-areas: 
   ". headerName addButton"
   ". projectList ."; 
-  background-color: hsl(21, 32%, 82%);
+  background-color: var(--darkAccent1);
   row-gap: 1em;
 }
 
@@ -53,12 +56,14 @@ header{
   justify-self: center;
   align-self: center;
   font-size: 3em;
+  color: var(--darkAccent1Text);
 }
 
 #newProjectButton{
   grid-area: addButton;
   background:none;
   border:none;
+  color: var(--darkAccent1Text);
 }
 
 #projectsContainer{
@@ -69,7 +74,10 @@ header{
   justify-content: flex-start;
   height: 100%;
 }
-
+#projectsContainer p{
+  font-size: 1.5em;
+  color: var(--darkAccent1Text);
+}
 .active{
   text-decoration: underline;
 }
@@ -80,6 +88,7 @@ header{
 #taskSection{
   grid-area: taskList;
   padding: 60px;
+  background-color: var(--darkAccent2);
 }
 
 #tasksHeader{
@@ -112,7 +121,7 @@ header{
 
 footer{
   grid-area: footer;
-  background-color: hsl(220, 80%, 50%);
+  background-color:var(--darkPrimary);
 }
 
 
@@ -136,7 +145,7 @@ footer{
   "title title title"
   "name name name"
   "accept close delete";
-  background-color: var(--todoBlue);
+  background-color: var(--darkPrimary);
 }
 
 #projectModalTitle{
@@ -162,7 +171,7 @@ footer{
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--todoBlue);
+  background-color: var(--darkPrimary);
 }
 
 #taskModal form{
