@@ -8,10 +8,12 @@
 }
 
 :root{
-  --darkPrimary: hsl(0, 0%, 38%);
-  --darkAccent1: hsl(220, 3%, 21%);
-  --darkAccent2: hsl(0, 0%, 63%);
+  --darkPrimary: hsl(0, 0%, 28%);
+  --darkAccent1: hsl(210, 19%, 12%);
+  --darkAccent2: hsl(240, 4%, 9%);
+
   --darkAccent1Text: hsl(0, 0%, 85%);
+  --darkAccent2Text: hsl(0, 0%, 100%);
 }
 /* contentNode */
 
@@ -35,6 +37,7 @@ header{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  box-shadow: inset 0 -3px 3px 0 hsl(240, 4%, 9%);
 }
 
 /* projects section  */
@@ -89,6 +92,10 @@ header{
   grid-area: taskList;
   padding: 60px;
   background-color: var(--darkAccent2);
+  border-left: 1px solid hsl(0, 0%, 85%);
+}
+#taskSection button{
+  color: var(--darkAccent2Text);
 }
 
 #tasksHeader{
@@ -99,10 +106,12 @@ header{
 }
 #tasksHeaderTitle{
   font-size: 3em;
+  color: var(--darkAccent2Text);
 }
 #tasksContainer>div{
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1em;
 }
 #openProjectModal{
@@ -110,6 +119,37 @@ header{
   border:none;
   margin-right: 10px;
 }
+#tasksContainer>div>p{
+  font-size: 2em;
+  color: var(--darkAccent2Text);
+
+}
+
+#tasksContainer>div>input{
+  -webkit-appearance: none;
+  height: 2em;
+  width: 2em;
+  border: 1px solid black;
+  border-radius: 50%;
+  vertical-align: middle;
+  color: var(--darkAccent2Text);
+
+}
+
+#tasksContainer>div>input:checked{
+background-color: hsl(220, 80%, 60%);
+}
+
+#tasksContainer>div>input:checked::before{
+  content: "✓";
+  font-size: 2em;
+  color: white;
+  position: relative;
+  left: 4px;
+  top:-2px;
+}
+
+
 
 #newTaskButton{
   background: none;
@@ -122,6 +162,8 @@ header{
 footer{
   grid-area: footer;
   background-color:var(--darkPrimary);
+  box-shadow: inset 0 3px 3px 0 hsl(240, 4%, 9%);
+
 }
 
 
