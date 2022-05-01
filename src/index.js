@@ -29,7 +29,9 @@ document.body.appendChild(document.createElement("dialog"))
 const taskModalElement = document.body.lastChild;
 taskModalElement.id = "taskModal";
 
-
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 const headerDOMManager = new HeaderDOMManager(headerElement);
 const projectDOMManager = new ProjectDOMManager(projectsElement);
@@ -106,15 +108,14 @@ function addTask(e){
   taskModalDOMManager.form.reset()
 }
 
-taskDOMManager.tasksContainer.addEventListener("change", deleteTask)
+taskDOMManager.tasksContainer.addEventListener("change",deleteTask )
 
-function deleteTask(e){
+async function deleteTask(e){
+  await sleep(500);
   const taskID = e.target.parentElement.id;
   const project = taskDOMManager.currentProject;
   database.deleteTaskById(taskID,project);
   taskDOMManager.deleteTask(taskID);
-
-
 }
 
 taskModalDOMManager.cancelButton.addEventListener("click", ()=> taskModalElement.close())
