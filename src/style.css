@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
 
-:root{
+:root {
   --darkPrimary: hsl(0, 0%, 28%);
   --darkAccent1: hsl(210, 19%, 12%);
   --darkAccent2: hsl(240, 4%, 9%);
@@ -15,11 +15,12 @@
   --darkAccent1Text: hsl(0, 0%, 85%);
   --darkAccent2Text: hsl(0, 0%, 100%);
 }
+
 /* contentNode */
 
-#content{
+#content {
   height: 100vh;
-  display:grid;
+  display: grid;
   grid-template-columns: 400px 1fr;
   grid-template-rows: 50px 1fr 50px;
   grid-template-areas:
@@ -30,7 +31,7 @@
 
 /* header */
 
-header{
+header {
   grid-area: header;
   padding: .5em;
   background-color: var(--darkPrimary);
@@ -46,19 +47,19 @@ header{
 
 /* projects section  */
 
-#projectSection{
+#projectSection {
   grid-area: projectList;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: auto 1fr;
-  grid-template-areas: 
-  ". headerName addButton"
-  ". projectList ."; 
+  grid-template-areas:
+    ". headerName addButton"
+    ". projectList .";
   background-color: var(--darkAccent1);
   row-gap: 1em;
 }
 
-#projectsHeaderTitle{
+#projectsHeaderTitle {
   grid-area: headerName;
   justify-self: center;
   align-self: center;
@@ -66,14 +67,14 @@ header{
   color: var(--darkAccent1Text);
 }
 
-#newProjectButton{
+#newProjectButton {
   grid-area: addButton;
-  background:none;
-  border:none;
+  background: none;
+  border: none;
   color: var(--darkAccent1Text);
 }
 
-#projectsContainer{
+#projectsContainer {
   grid-area: projectList;
   display: flex;
   flex-direction: column;
@@ -81,55 +82,62 @@ header{
   justify-content: flex-start;
   height: 100%;
 }
-#projectsContainer p{
+
+#projectsContainer p {
   font-size: 1.5em;
   color: var(--darkAccent1Text);
 }
-.active{
+
+.active {
   text-decoration: underline;
 }
 
 
 /* tasks section */
 
-#taskSection{
+#taskSection {
   grid-area: taskList;
   padding: 60px;
   background-color: var(--darkAccent2);
   border-left: 1px solid hsl(0, 0%, 85%);
 }
-#taskSection button{
+
+#taskSection button {
   color: var(--darkAccent2Text);
 }
 
-#tasksHeader{
+#tasksHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
-#tasksHeaderTitle{
+
+#tasksHeaderTitle {
   font-size: 3em;
   color: var(--darkAccent2Text);
 }
-#tasksContainer>div{
+
+#tasksContainer>div {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1em;
 }
-#openProjectModal{
+
+#openProjectModal {
   background: none;
-  border:none;
+  border: none;
   margin-right: 10px;
 }
-#tasksContainer>div>p{
+
+#tasksContainer>div>p {
   font-size: 2em;
   color: var(--darkAccent2Text);
 
 }
 
-#tasksContainer>div>input{
+#tasksContainer>div>input {
   -webkit-appearance: none;
   height: 2em;
   width: 2em;
@@ -140,32 +148,32 @@ header{
 
 }
 
-#tasksContainer>div>input:checked{
-background-color: hsl(220, 80%, 60%);
+#tasksContainer>div>input:checked {
+  background-color: hsl(220, 80%, 60%);
 }
 
-#tasksContainer>div>input:checked::before{
+#tasksContainer>div>input:checked::before {
   content: "✓";
   font-size: 2em;
   color: white;
   position: relative;
   left: 4px;
-  top:-2px;
+  top: -2px;
 }
 
 
 
-#newTaskButton{
+#newTaskButton {
   background: none;
-  border:none;
+  border: none;
   font-style: italic;
 }
 
 /* footer */
 
-footer{
+footer {
   grid-area: footer;
-  background-color:var(--darkPrimary);
+  background-color: var(--darkPrimary);
   box-shadow: inset 0 3px 3px 0 hsl(240, 4%, 9%);
 
 }
@@ -173,7 +181,7 @@ footer{
 
 /* project modal */
 
-#projectModal{
+#projectModal {
   width: 300px;
   height: 200px;
   padding: 10px;
@@ -183,25 +191,25 @@ footer{
   transform: translate(-50%, -50%);
 }
 
-#projectModal form{
+#projectModal form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 
-  "title title title"
-  "name name name"
-  "accept close delete";
+  grid-template-areas:
+    "title title title"
+    "name name name"
+    "accept close delete";
   background-color: var(--darkPrimary);
 }
 
-#projectModalTitle{
+#projectModalTitle {
   grid-area: title;
   justify-self: center;
   align-self: center;
 
 }
 
-#projectModalProjectName{
+#projectModalProjectName {
   grid-area: name;
   justify-self: center;
   align-self: center;
@@ -209,7 +217,7 @@ footer{
 
 /* task modal */
 
-#taskModal{
+#taskModal {
   width: 500px;
   height: 400px;
   padding: 10px;
@@ -220,20 +228,20 @@ footer{
   background-color: var(--darkPrimary);
 }
 
-#taskModal form{
+#taskModal form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
-  grid-template-areas: 
-  "title title"
-  "nameLabel name"
-  "startDateLabel startDate"
-  "endDateLabel endDate"
-  "makeTask cancel";
+  grid-template-areas:
+    "title title"
+    "nameLabel name"
+    "startDateLabel startDate"
+    "endDateLabel endDate"
+    "makeTask cancel";
   column-gap: 20px;
 }
 
-#taskModalTitle{
+#taskModalTitle {
   grid-area: title;
   justify-self: center;
   align-self: center;
@@ -241,42 +249,47 @@ footer{
   font-size: 3em;
 }
 
-#taskModalTaskNameLabel{
+#taskModalTaskNameLabel {
   grid-area: nameLabel;
   justify-self: flex-end;
   align-self: center;
 }
-#taskModalTaskName{
+
+#taskModalTaskName {
   grid-area: name;
   justify-self: flex-start;
   align-self: center;
 }
-#taskModalStartDateLabel{
+
+#taskModalStartDateLabel {
   grid-area: startDateLabel;
   justify-self: flex-end;
   align-self: center;
 }
-#taskModalStartDate{
+
+#taskModalStartDate {
   grid-area: startDate;
   justify-self: flex-start;
   align-self: center;
 }
 
-#taskModalEndDateLabel{
+#taskModalEndDateLabel {
   grid-area: endDateLabel;
   justify-self: flex-end;
   align-self: center;
 }
-#taskModalEndDate{
+
+#taskModalEndDate {
   grid-area: endDate;
   justify-self: flex-start;
   align-self: center;
 
 }
-#taskModalSubmit{
+
+#taskModalSubmit {
   grid-area: makeTask;
   background: none;
-  border:none;
+  border: none;
   border: 1px solid white;
   color: white;
   width: 175px;
@@ -284,10 +297,11 @@ footer{
   align-self: flex-end;
   font-size: 2em;
 }
-#taskModalCancel{
+
+#taskModalCancel {
   grid-area: cancel;
   background: none;
-  border:1px solid white;
+  border: 1px solid white;
   color: white;
   width: 175px;
   justify-self: center;
