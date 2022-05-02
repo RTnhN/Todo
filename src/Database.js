@@ -43,6 +43,10 @@ class Database {
     this.projects[this.getProjectIndex(targetProject)].updateProject(targetProject);
     this.writeStorage();
   }
+  reorderProjects(projectIdsList){
+    this.projects = projectIdsList.map(id=> this.projects.find((element=> element.id === id)))
+    this.writeStorage();
+  }
   writeStorage() {
     if (this.#storageAgent !== null) {
       this.#storageAgent.store(this.projects);

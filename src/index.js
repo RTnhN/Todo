@@ -48,6 +48,7 @@ function openProjectMenu(event){
   document.getElementById("content").style.gridTemplateColumns = (gridWidth === "")? "400px 1fr": "";
 }
 
+projectsElement.addEventListener("drop", ()=> database.reorderProjects(projectDOMManager.projectsDivIds));
 
 projectDOMManager.populateProjectsList(database.projects);
 
