@@ -6,6 +6,7 @@ class TaskModalDOMManager {
     this.#taskModalElement = taskModalElement;
     this.#taskModalPlaceholder = document.createDocumentFragment();
     this.make()
+    document.getElementById("taskModalCancel").addEventListener("click", this.#taskModalElement.close())
   }
   make() {
     this.#taskModalPlaceholder.appendChild(document.createElement("form"));

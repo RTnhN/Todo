@@ -5,7 +5,8 @@ class ProjectModalDOMManager {
   constructor(projectModalElement) {
     this.#projectModalElement = projectModalElement;
     this.#projectModalPlaceholder = document.createDocumentFragment();
-    this.make()
+    this.make();
+    document.getElementById("projectModalCloseButton").addEventListener("click", ()=> this.#projectModalElement.close());
   }
   make() {
     this.#projectModalPlaceholder.appendChild(document.createElement("form"));
