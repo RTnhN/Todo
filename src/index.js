@@ -41,6 +41,14 @@ const taskModalDOMManager = new TaskModalDOMManager(taskModalElement);
 const localStorageAgent = new LocalStorageAgent(Task, Project, "todo");
 const database = new Database(localStorageAgent);
 
+headerDOMManager.menuButton.addEventListener("click", openProjectMenu);
+
+function openProjectMenu(event){
+  const gridWidth = document.getElementById("content").style.gridTemplateColumns;
+  document.getElementById("content").style.gridTemplateColumns = (gridWidth === "")? "400px 1fr": "";
+}
+
+
 projectDOMManager.populateProjectsList(database.projects);
 
 taskDOMManager.populateTasksList(database.projects[0]);

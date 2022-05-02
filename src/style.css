@@ -40,6 +40,10 @@ header{
   box-shadow: inset 0 -3px 3px 0 hsl(240, 4%, 9%);
 }
 
+#projectMenuButton{
+  display: none;
+}
+
 /* projects section  */
 
 #projectSection{
@@ -289,8 +293,17 @@ footer{
   justify-self: center;
   align-self: flex-end;
   font-size: 2em;
-
-
 }
 
+/* media queries */
+
+@media screen and (max-width: 600px) {
+  #projectMenuButton {
+    display: block;
+  }
+
+  #content {
+    grid-template-columns: 0px 1fr;
+  }
+}
 
