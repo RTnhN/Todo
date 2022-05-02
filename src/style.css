@@ -43,6 +43,9 @@ header {
 
 #projectMenuButton{
   display: none;
+  background: none;
+  border: none;
+  color: white;
 }
 
 /* projects section  */

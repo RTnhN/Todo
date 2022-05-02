@@ -17,7 +17,7 @@ class HeaderDOMManager {
     this.#headerPlaceholder.lastChild.appendChild(document.createElement("button"));
     this.#headerPlaceholder.lastChild.lastChild.classList.add("material-symbols-outlined");
     this.#headerPlaceholder.lastChild.lastChild.id = "projectMenuButton";
-    this.#headerPlaceholder.lastChild.lastChild.textContent = "menu";
+    this.#headerPlaceholder.lastChild.lastChild.textContent = "chevron_right";
     this.#headerElement.appendChild(this.#headerPlaceholder);
   }
   get menuButton(){

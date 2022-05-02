@@ -43,7 +43,9 @@ const database = new Database(localStorageAgent);
 
 headerDOMManager.menuButton.addEventListener("click", openProjectMenu);
 
-function openProjectMenu(event){
+function openProjectMenu(){
+  const headerButton = headerDOMManager.menuButton.textContent
+  headerDOMManager.menuButton.textContent = headerButton === "chevron_right"? "chevron_left": "chevron_right"
   const gridWidth = document.getElementById("content").style.gridTemplateColumns;
   document.getElementById("content").style.gridTemplateColumns = (gridWidth === "")? "400px 1fr": "";
 }
