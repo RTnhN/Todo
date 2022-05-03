@@ -41,16 +41,16 @@ const taskModalDOMManager = new TaskModalDOMManager(taskModalElement);
 const localStorageAgent = new LocalStorageAgent(Task, Project, "todo");
 const database = new Database(localStorageAgent);
 
-headerDOMManager.menuButton.addEventListener("click", openProjectMenu);
+headerDOMManager.menuButton.addEventListener("click", toggleProjectMenu);
 
-function openProjectMenu(){
+function toggleProjectMenu() {
   const headerButton = headerDOMManager.menuButton.textContent
-  headerDOMManager.menuButton.textContent = headerButton === "chevron_right"? "chevron_left": "chevron_right"
+  headerDOMManager.menuButton.textContent = headerButton === "chevron_right" ? "chevron_left" : "chevron_right"
   const gridWidth = document.getElementById("content").style.gridTemplateColumns;
-  document.getElementById("content").style.gridTemplateColumns = (gridWidth === "")? "400px 1fr": "";
+  document.getElementById("content").style.gridTemplateColumns = (gridWidth === "") ? "400px 1fr" : "";
 }
 
-projectsElement.addEventListener("drop", ()=> database.reorderProjects(projectDOMManager.projectsDivIds));
+projectsElement.addEventListener("drop", () => database.reorderProjects(projectDOMManager.projectsDivIds));
 
 projectDOMManager.populateProjectsList(database.projects);
 
@@ -61,15 +61,15 @@ projectModalDOMManager.updateTargetProject(database.projects[0]);
 
 
 projectDOMManager.newProjectButton.addEventListener("click", addProject);
-document.querySelectorAll("#projectsContainer>div").forEach(div=> div.addEventListener("click", showProjectTasks))
+document.querySelectorAll("#projectsContainer>div").forEach(div => div.addEventListener("click", showProjectTasks))
 
-function addProject(){
+function addProject() {
   database.addProject(new Project());
   projectDOMManager.createProject(database.lastProject);
   projectDOMManager.lastProject.addEventListener("click", showProjectTasks)
 }
 
-function showProjectTasks(e){
+function showProjectTasks(e) {
   projectDOMManager.projectNames.forEach(name => name.classList.remove("active"));
   this.lastChild.classList.add("active");
   projectModalDOMManager.updateTargetProject(database.getProjectById(this.id))
@@ -81,36 +81,36 @@ taskDOMManager.openProjectModalButton.addEventListener("click", openProjectModal
 projectModalDOMManager.form.addEventListener("submit", updateProject);
 projectModalDOMManager.deleteButton.addEventListener("click", deleteProject);
 
-function openProjectModal(event){
+function openProjectModal(event) {
   projectModalElement.showModal()
 }
 
-function updateProject(){
+function updateProject() {
   const formData = new FormData(projectModalDOMManager.form);
-  const changed = {"id":projectModalDOMManager.targetProject.id ,"name":formData.get("name")}
+  const changed = { "id": projectModalDOMManager.targetProject.id, "name": formData.get("name") }
   database.updateProject(changed);
   projectDOMManager.updateProject(database.getProjectById(projectModalDOMManager.targetProject.id));
   taskDOMManager.populateTasksList(projectModalDOMManager.targetProject);
-  projectDOMManager.projectsDivs.forEach(div=> div.addEventListener("click", showProjectTasks));
+  projectDOMManager.projectsDivs.forEach(div => div.addEventListener("click", showProjectTasks));
 }
 
-function deleteProject(){
-  if (database.projects.length === 1){
+function deleteProject() {
+  if (database.projects.length === 1) {
     database.removeProject(projectModalDOMManager.targetProject);
     database.addProject(new Project())
-  } else {  
+  } else {
     database.removeProject(projectModalDOMManager.targetProject);
   }
   projectModalDOMManager.updateTargetProject(database.projects[0]);
   projectDOMManager.populateProjectsList(database.projects);
   taskDOMManager.populateTasksList(database.projects[0]);
-  projectDOMManager.projectsDivs.forEach(div=> div.addEventListener("click", showProjectTasks));
+  projectDOMManager.projectsDivs.forEach(div => div.addEventListener("click", showProjectTasks));
   projectModalElement.close()
 }
-taskDOMManager.createTaskButton.addEventListener("click", ()=>taskModalElement.showModal())
+taskDOMManager.createTaskButton.addEventListener("click", () => taskModalElement.showModal())
 taskModalDOMManager.form.addEventListener("submit", addTask);
 
-function addTask(e){
+function addTask(e) {
   e.preventDefault();
   const newTask = new Task(Object.fromEntries(new FormData(taskModalDOMManager.form)));
   database.addTask(newTask, projectModalDOMManager.targetProject);
@@ -119,15 +119,15 @@ function addTask(e){
   taskModalDOMManager.form.reset()
 }
 
-taskDOMManager.tasksContainer.addEventListener("change",deleteTask )
+taskDOMManager.tasksContainer.addEventListener("change", deleteTask)
 
-async function deleteTask(e){
+async function deleteTask(e) {
   await sleep(500);
   const taskID = e.target.parentElement.id;
   const project = taskDOMManager.currentProject;
-  database.deleteTaskById(taskID,project);
+  database.deleteTaskById(taskID, project);
   taskDOMManager.deleteTask(taskID);
 }
 
-taskModalDOMManager.cancelButton.addEventListener("click", ()=> taskModalElement.close())
+taskModalDOMManager.cancelButton.addEventListener("click", () => taskModalElement.close())
 
