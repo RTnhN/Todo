@@ -5,8 +5,10 @@ class TaskModalDOMManager {
   constructor(taskModalElement) {
     this.#taskModalElement = taskModalElement;
     this.#taskModalPlaceholder = document.createDocumentFragment();
-    this.make()
-    document.getElementById("taskModalCancel").addEventListener("click", this.#taskModalElement.close())
+    this.make();
+    document.getElementById("taskModalCancel").addEventListener("click", this.#taskModalElement.close());
+    document.getElementById("taskModalStartDate").addEventListener("change", this.startDateChange.bind(this));
+    document.getElementById("taskModalEndDate").addEventListener("change", this.endDateChange.bind(this));
   }
   make() {
     this.#taskModalPlaceholder.appendChild(document.createElement("form"));
@@ -51,6 +53,27 @@ class TaskModalDOMManager {
     taskModalForm.lastChild.type = "button";
     taskModalForm.lastChild.value = "Cancel";
     this.#taskModalElement.appendChild(this.#taskModalPlaceholder);
+  }
+  startDateChange(event){
+    const endDate = document.getElementById("taskModalEndDate");
+    if (endDate.value !== "" && endDate.valueAsDate < event.target.valueAsDate){
+      event.target.setCustomValidity("Start date must be before end date.");
+
+    } else {
+      event.target.setCustomValidity("");
+      endDate.setCustomValidity("");
+    }
+  }
+
+  endDateChange(event){
+    const startDate = document.getElementById("taskModalStartDate");
+    if (startDate.value !== "" && startDate.valueAsDate > event.target.valueAsDate){
+      event.target.setCustomValidity("End date must be after start date.");
+
+    } else {
+      event.target.setCustomValidity("");
+      startDate.setCustomValidity("");
+    }
   }
 
   get acceptButton() {
