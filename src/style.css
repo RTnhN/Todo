@@ -192,6 +192,7 @@ footer {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background-color: var(--darkPrimary);
 }
 
 #projectModal form {
@@ -200,22 +201,61 @@ footer {
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     "title title title"
-    "name name name"
+    "nameLabel name name"
     "accept close delete";
-  background-color: var(--darkPrimary);
 }
 
 #projectModalTitle {
   grid-area: title;
   justify-self: center;
   align-self: center;
-
+  color: white;
 }
 
+#projectModalProjectNameLabel {
+  grid-area: nameLabel;
+  justify-self: center;
+  align-self: center;
+  color: white;
+}
 #projectModalProjectName {
   grid-area: name;
   justify-self: center;
   align-self: center;
+}
+
+#projectModalAcceptButton {
+  grid-area: accept;
+  background: none;
+  background-color: var(--darkPrimary);
+  border: 1px solid white;
+  color: white;
+  padding: .5em .5em;
+  margin-top: 1rem;
+  justify-self: center;
+  align-self: center;
+}
+#projectModalCloseButton {
+  grid-area: close;
+  background: none;
+  background-color: var(--darkPrimary);
+  border: 1px solid white;
+  color: white;
+  padding: .5em .5em;
+  margin-top: 1rem;
+  justify-self: center;
+  align-self: center;
+}
+#projectModalDeleteButton {
+  grid-area: delete;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: .5em .5em;
+  margin-top: 1rem;
+  justify-self: center;
+  align-self: center;
+  background-color: rgb(78, 17, 17);
 }
 
 /* task modal */

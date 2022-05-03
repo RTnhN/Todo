@@ -15,7 +15,11 @@ class ProjectModalDOMManager {
     projectModalForm.setAttribute("method", "dialog");
     projectModalForm.appendChild(document.createElement("h1"));
     projectModalForm.lastChild.id="projectModalTitle";
-    projectModalForm.lastChild.textContent = "Project";
+    projectModalForm.lastChild.textContent = "Project Info";
+    projectModalForm.appendChild(document.createElement("label"));
+    projectModalForm.lastChild.for = "projectModalProjectName";
+    projectModalForm.lastChild.textContent = "project name"
+    projectModalForm.lastChild.id = "projectModalProjectNameLabel";
     projectModalForm.appendChild(document.createElement("input"));
     projectModalForm.lastChild.id = "projectModalProjectName";
     projectModalForm.lastChild.value = "project name"
