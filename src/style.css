@@ -144,7 +144,7 @@ header {
   -webkit-appearance: none;
   height: 2em;
   width: 2em;
-  border: 1px solid black;
+  border: 2px solid hsl(0, 0%, 100%);
   border-radius: 50%;
   vertical-align: middle;
   color: var(--darkAccent2Text);
