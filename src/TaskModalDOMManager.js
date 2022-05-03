@@ -45,7 +45,7 @@ class TaskModalDOMManager {
     taskModalForm.appendChild(document.createElement("input"));
     taskModalForm.lastChild.id = "taskModalSubmit";
     taskModalForm.lastChild.type = "submit";
-    taskModalForm.lastChild.value = "Make Task";
+    taskModalForm.lastChild.value = "Make";
     taskModalForm.appendChild(document.createElement("input"));
     taskModalForm.lastChild.id = "taskModalCancel";
     taskModalForm.lastChild.type = "button";
