@@ -120,7 +120,9 @@ header {
   font-size: 3em;
   color: var(--darkAccent2Text);
 }
-
+#tasksContainer{
+  margin-top: 2em;
+}
 #tasksContainer>div {
   display: flex;
   flex-direction: row;
@@ -168,6 +170,7 @@ header {
   background: none;
   border: none;
   font-style: italic;
+  margin-top: 1em;
 }
 
 #tasksContainer>div>p.taskDate{
