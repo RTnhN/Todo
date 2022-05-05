@@ -5,24 +5,26 @@ class Database {
     this.#storageAgent = storageAgent
     this.projects = this.readStorage();
   }
-  addTask(task, project) {
-    this.projects[this.getProjectIndex(project)].addTask(task);
+  addTask(task, projectId) {
+    this.projects[this.getProjectIndexById(projectId)].addTask(task);
     this.writeStorage()
   }
-  deleteTask(task, project) {
-    this.projects[this.getProjectIndex(project)].removeTask(task);
+  deleteTask(taskId) {
+    this.projects.find(project => project.tasks.find(task => task.id === taskId)).removeTaskById(taskId);
     this.writeStorage()
   }
-  deleteTaskById(id, project){
-    this.projects[this.getProjectIndex(project)].removeTaskById(id);
+  updateTask(taskUpdated) {
+    this.projects.find(project => project.tasks.find(task => task.id === taskUpdated.id)).updateTask(taskUpdated)
     this.writeStorage()
   }
-  updateTask(task, project) {
-    this.projects[this.getProjectIndex(project)].updateTask(task);
-    this.writeStorage()
+  getTaskByID(id){
+    return this.projects.find(project => project.tasks.find(task => task.id === id)).tasks.find(task=> task.id === id);
   }
   getProjectIndex(targetProject) {
     return this.projects.findIndex(project => project.id === targetProject.id);
+  }
+  getProjectIndexById(targetProjectId) {
+    return this.projects.findIndex(project => project.id === targetProjectId);
   }
   getProjectById(id) {
     return this.projects.find(project => project.id === id)
@@ -31,7 +33,7 @@ class Database {
     this.projects.push(targetProject);
     this.writeStorage();
   }
-  removeProject(targetProject) {
+  deleteProject(targetProject) {
     if (this.projects.length <= 1) {
       this.projects = []
     } else {

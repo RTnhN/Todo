@@ -31,9 +31,9 @@ class ProjectDOMManager {
   }
   populateProjectsList(projectsList){
     this.clearProjectsList()
-    projectsList.forEach(this.createProject.bind(this))
+    projectsList.forEach(this.addProject.bind(this))
   }
-  createProject(project){
+  addProject(project){
     this.#projectsContainer.appendChild(document.createElement("div"));
     const projectDiv = this.#projectsContainer.lastChild;
     projectDiv.id = project.id;
@@ -49,12 +49,22 @@ class ProjectDOMManager {
     projectElement.lastChild.textContent = project.name;
     projectElement.lastChild.classList.add("active");
   }
-
+  deleteProject(project){
+    this.projectsContainer.remove(document.getElementById(project.id))
+  }
   clearProjectsList(){
     while (this.#projectsContainer.firstChild){
       this.#projectsContainer.removeChild(this.#projectsContainer.firstChild);
     }
   }
+  resetProjectUnderline(){
+    Array.from(this.projectsContainer.children).forEach(name => name.lastChild.classList.remove("active"));
+  }
+  setProjectUnderline(id){
+    this.resetProjectUnderline();
+    document.getElementById(id).lastChild.classList.add("active");
+  }
+
   startDrag(e){
     this.#dragged = e.target;
     this.#draggedId = this.#dragged.id;
@@ -78,6 +88,9 @@ class ProjectDOMManager {
   }
   get projectsDivs(){
     return document.querySelectorAll("#projectsContainer>div");
+  }
+  get projectsContainer(){
+    return document.getElementById("projectsContainer");
   }
   get projectsDivIds(){
     const projectDivs = Array.from(document.querySelectorAll("#projectsContainer>div"));

@@ -1,3 +1,5 @@
+import {formatRelative} from "date-fns";
+
 class TaskDOMManager {
   #tasksElement;
   #tasksPlaceholder;
@@ -29,11 +31,12 @@ class TaskDOMManager {
   }
   populateTasksList(project){
     this.currentProject = project;
-    document.querySelector("#tasksHeaderTitle").textContent = project.name;
+    this.tasksHeaderTitle.textContent = project.name;
+    this.tasksHeaderTitle.dataset.projectId = project.id;
     this.clearTasksList()
-    project.tasks.forEach(this.createTask.bind(this))
+    project.tasks.forEach(this.addTask.bind(this))
   }
-  createTask(task){
+  addTask(task){
     this.#tasksContainer.appendChild(document.createElement("div"));
     const TaskDiv = this.#tasksContainer.lastChild;
     TaskDiv.id = task.id;
@@ -41,7 +44,36 @@ class TaskDOMManager {
     TaskDiv.lastChild.type="checkbox";
     TaskDiv.appendChild(document.createElement("p"));
     TaskDiv.lastChild.textContent = task.name;
+    if (task.endDate !== ""){
+      TaskDiv.appendChild(document.createElement("p"));
+      TaskDiv.lastChild.textContent = "Due: ";
+      TaskDiv.lastChild.classList.add("taskDate");
+      TaskDiv.appendChild(document.createElement("p"));
+      TaskDiv.lastChild.textContent = formatRelative(task.endDate, new Date());
+      TaskDiv.lastChild.classList.add("taskDate");
+      TaskDiv.lastChild.classList.add("date");
+    }
   }
+  updateTask(task){
+    const taskElement = document.getElementById(task.id);
+    while (taskElement.firstChild){
+      taskElement.removeChild(taskElement.firstChild);
+    }
+    taskElement.appendChild(document.createElement("input"))
+    taskElement.lastChild.type="checkbox";
+    taskElement.appendChild(document.createElement("p"));
+    taskElement.lastChild.textContent = task.name;
+    if (task.endDate !== ""){
+      taskElement.appendChild(document.createElement("p"));
+      taskElement.lastChild.textContent = "Due: ";
+      taskElement.lastChild.classList.add("taskDate");
+      taskElement.appendChild(document.createElement("p"));
+      taskElement.lastChild.textContent = formatRelative(task.endDate, new Date());
+      taskElement.lastChild.classList.add("taskDate");
+      taskElement.lastChild.classList.add("date");
+    }
+    }
+
   clearTasksList(){
     while (this.#tasksContainer.firstChild){
       this.#tasksContainer.removeChild(this.#tasksContainer.firstChild);
@@ -57,13 +89,14 @@ class TaskDOMManager {
   get createTaskButton(){
     return document.getElementById("newTaskButton");
   }
-  // Might not need this method
-  get checkboxes(){
-    return document.querySelectorAll("#tasksContainer input");
-  }
   get tasksContainer(){
     return document.getElementById("tasksContainer");
-
+  }
+  get tasksHeaderTitle(){
+    return document.getElementById("tasksHeaderTitle");
+  }
+  get projectId(){
+    return document.getElementById("tasksHeaderTitle").dataset.projectId;
   }
 }
 

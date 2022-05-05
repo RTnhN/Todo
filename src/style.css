@@ -164,12 +164,15 @@ header {
   top: -2px;
 }
 
-
-
 #newTaskButton {
   background: none;
   border: none;
   font-style: italic;
+}
+
+#tasksContainer>div>p.taskDate{
+  color: hsl(0,0%,50%);
+  /* font-size: 1rem; */
 }
 
 /* footer */
@@ -258,10 +261,10 @@ footer {
   background-color: rgb(78, 17, 17);
 }
 
-/* task modal */
+/* task create modal */
 
-#taskModal {
-  width: max(20vw, 350px);
+#taskCreateModal {
+  width: max(20vw, 370px);
   padding: 10px;
   position: absolute;
   left: 50%;
@@ -272,7 +275,7 @@ footer {
   border: 1px solid white;
 }
 
-#taskModal form {
+#taskCreateModal form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -285,7 +288,7 @@ footer {
   column-gap: 20px;
 }
 
-#taskModalTitle {
+#taskCreateModalTitle {
   grid-area: title;
   justify-self: center;
   align-self: center;
@@ -293,47 +296,50 @@ footer {
   font-size: 3em;
 }
 
-#taskModalTaskNameLabel {
+#taskCreateModalTaskNameLabel {
   grid-area: nameLabel;
   color: white;
   justify-self: flex-end;
   align-self: center;
 }
 
-#taskModalTaskName {
+#taskCreateModalTaskName {
   grid-area: name;
   justify-self: flex-start;
   align-self: center;
+  width: 100%;
 }
 
-#taskModalStartDateLabel {
+#taskCreateModalStartDateLabel {
   grid-area: startDateLabel;
   color: white;
   justify-self: flex-end;
   align-self: center;
 }
 
-#taskModalStartDate {
+#taskCreateModalStartDate {
   grid-area: startDate;
   justify-self: flex-start;
   align-self: center;
+  width: 100%;
 }
 
-#taskModalEndDateLabel {
+#taskCreateModalEndDateLabel {
   color: white;
   grid-area: endDateLabel;
   justify-self: flex-end;
   align-self: center;
 }
 
-#taskModalEndDate {
+#taskCreateModalEndDate {
   grid-area: endDate;
   justify-self: flex-start;
   align-self: center;
+  width: 100%;
 
 }
 
-#taskModalSubmit {
+#taskCreateModalSubmit {
   grid-area: submitButton;
   background: none;
   border: none;
@@ -345,7 +351,7 @@ footer {
   font-size: 1rem;
 }
 
-#taskModalCancel {
+#taskCreateModalCancel {
   grid-area: cancelButton;
   background: none;
   border: 1px solid white;
@@ -355,6 +361,120 @@ footer {
   align-self: flex-end;
   font-size: 1rem;
 }
+
+
+/* task info modal */
+
+#taskInfoModal {
+  width: max(20vw, 370px);
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--darkPrimary);
+  box-shadow: 0px 0px 5px 5px hsl(240, 2%, 33%);
+  border: 1px solid white;
+}
+
+#taskInfoModal form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "title title title title title title"
+    "nameLabel nameLabel nameLabel name name name"
+    "startDateLabel startDateLabel startDateLabel startDate startDate startDate"
+    "endDateLabel endDateLabel endDateLabel endDate endDate endDate"
+    "submitButton submitButton cancelButton cancelButton deleteButton deleteButton";
+  column-gap: 20px;
+}
+
+#taskInfoModalTitle {
+  grid-area: title;
+  justify-self: center;
+  align-self: center;
+  color: white;
+  font-size: 3em;
+}
+
+#taskInfoModalTaskNameLabel {
+  grid-area: nameLabel;
+  color: white;
+  justify-self: flex-end;
+  align-self: center;
+}
+
+#taskInfoModalTaskName {
+  grid-area: name;
+  justify-self: flex-start;
+  align-self: center;
+  width: 100%;
+}
+
+#taskInfoModalStartDateLabel {
+  grid-area: startDateLabel;
+  color: white;
+  justify-self: flex-end;
+  align-self: center;
+}
+
+#taskInfoModalStartDate {
+  grid-area: startDate;
+  justify-self: flex-start;
+  align-self: center;
+  width: 100%;
+}
+
+#taskInfoModalEndDateLabel {
+  color: white;
+  grid-area: endDateLabel;
+  justify-self: flex-end;
+  align-self: center;
+}
+
+#taskInfoModalEndDate {
+  grid-area: endDate;
+  justify-self: flex-start;
+  align-self: center;
+  width: 100%;
+
+}
+
+#taskInfoModalAcceptButton {
+  grid-area: submitButton;
+  background: none;
+  border: none;
+  border: 1px solid white;
+  color: white;
+  padding: .5em 2em;
+  justify-self: center;
+  align-self: flex-end;
+  font-size: 1rem;
+}
+
+#taskInfoModalCloseButton {
+  grid-area: cancelButton;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: .5em 2em;
+  justify-self: center;
+  align-self: flex-end;
+  font-size: 1rem;
+}
+
+#taskInfoModalDeleteButton{
+  grid-area: deleteButton;
+  background-color: rgb(78, 17, 17);
+  border: 1px solid white;
+  color: white;
+  padding: .5em 2em;
+  justify-self: center;
+  align-self: flex-end;
+  font-size: 1rem;
+}
+
 
 /* media queries */
 
