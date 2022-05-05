@@ -32,7 +32,7 @@ class TaskModalDOMManager {
     taskModalForm.lastChild.textContent = "Start Date:";
     taskModalForm.appendChild(document.createElement("input"));
     taskModalForm.lastChild.id = "taskModalStartDate";
-    taskModalForm.lastChild.type = "date";
+    taskModalForm.lastChild.type = "datetime-local";
     taskModalForm.lastChild.value = "Start Date";
     taskModalForm.lastChild.name = "startDate";
     taskModalForm.appendChild(document.createElement("label"));
@@ -41,7 +41,7 @@ class TaskModalDOMManager {
     taskModalForm.lastChild.textContent = "End Date:";
     taskModalForm.appendChild(document.createElement("input"));
     taskModalForm.lastChild.id = "taskModalEndDate";
-    taskModalForm.lastChild.type = "date";
+    taskModalForm.lastChild.type = "datetime-local";
     taskModalForm.lastChild.value = "End Date";
     taskModalForm.lastChild.name = "endDate";
     taskModalForm.appendChild(document.createElement("input"));
