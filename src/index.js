@@ -1,13 +1,13 @@
-import Task from "./Task.js";
-import Project from "./Project.js"
-import Database from "./Database.js";
-import LocalStorageAgent from "./TaskProjectLocalStorageAgent.js";
-import ProjectDOMManager from "./ProjectDOMManager.js";
-import TaskDOMManager from "./TaskDOMManager.js";
-import HeaderDOMManager from "./HeaderDOMManager.js";
-import ProjectModalDOMManager from "./ProjectModalDOMManager.js";
-import TaskCreateModalDOMManager from "./TaskCreateModalDOMManager.js";
-import TaskInfoModalDOMManager from "./TaskInfoModalDOMManager.js";
+import Task from "./Modules/Templates/Task.js";
+import Project from "./Modules/Templates/Project.js"
+import Database from "./Modules/Templates/Database.js";
+import LocalStorageAgent from "./Modules/Helpers/TaskProjectLocalStorageAgent.js";
+import ProjectDOMManager from "./Modules/DOM/ProjectDOMManager.js";
+import TaskDOMManager from "./Modules/DOM/TaskDOMManager.js";
+import HeaderDOMManager from "./Modules/DOM/HeaderDOMManager.js";
+import ProjectModalDOMManager from "./Modules/DOM/ProjectModalDOMManager.js";
+import TaskCreateModalDOMManager from "./Modules/DOM/TaskCreateModalDOMManager.js";
+import TaskInfoModalDOMManager from "./Modules/DOM/TaskInfoModalDOMManager.js";
 import "./style.css";
 
 const contentElement = document.getElementById("content");

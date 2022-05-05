@@ -11,11 +11,8 @@ class Project {
   addTask(task){
     this.tasks.push(task);
   }
-  removeTask(task){
-    this.tasks = this.tasks.filter(item=> item.id !== task.id)
-  }
   removeTaskById(id){
-    this.tasks = this.tasks.filter(item=> item.id !== id)
+    this.tasks = this.tasks.filter(item=> item.id !== id);
   }
   updateTask(updatedTask) {
     const updatedTaskID = updatedTask.id;

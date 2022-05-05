@@ -2,20 +2,20 @@ class Database {
   projects;
   #storageAgent;
   constructor(storageAgent) {
-    this.#storageAgent = storageAgent
+    this.#storageAgent = storageAgent;
     this.projects = this.readStorage();
   }
   addTask(task, projectId) {
     this.projects[this.getProjectIndexById(projectId)].addTask(task);
-    this.writeStorage()
+    this.writeStorage();
   }
   deleteTask(taskId) {
     this.projects.find(project => project.tasks.find(task => task.id === taskId)).removeTaskById(taskId);
-    this.writeStorage()
+    this.writeStorage();
   }
   updateTask(taskUpdated) {
-    this.projects.find(project => project.tasks.find(task => task.id === taskUpdated.id)).updateTask(taskUpdated)
-    this.writeStorage()
+    this.projects.find(project => project.tasks.find(task => task.id === taskUpdated.id)).updateTask(taskUpdated);
+    this.writeStorage();
   }
   getTaskByID(id){
     return this.projects.find(project => project.tasks.find(task => task.id === id)).tasks.find(task=> task.id === id);
@@ -27,7 +27,7 @@ class Database {
     return this.projects.findIndex(project => project.id === targetProjectId);
   }
   getProjectById(id) {
-    return this.projects.find(project => project.id === id)
+    return this.projects.find(project => project.id === id);
   }
   addProject(targetProject) {
     this.projects.push(targetProject);
@@ -35,7 +35,7 @@ class Database {
   }
   deleteProject(targetProject) {
     if (this.projects.length <= 1) {
-      this.projects = []
+      this.projects = [];
     } else {
       this.projects = this.projects.filter(project => project.id !== targetProject.id);
     }
@@ -46,7 +46,7 @@ class Database {
     this.writeStorage();
   }
   reorderProjects(projectIdsList){
-    this.projects = projectIdsList.map(id=> this.projects.find((element=> element.id === id)))
+    this.projects = projectIdsList.map(id=> this.projects.find((element=> element.id === id)));
     this.writeStorage();
   }
   writeStorage() {

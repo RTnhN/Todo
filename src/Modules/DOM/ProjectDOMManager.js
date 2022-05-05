@@ -68,8 +68,8 @@ class ProjectDOMManager {
   startDrag(e){
     this.#dragged = e.target;
     this.#draggedId = this.#dragged.id;
-    this.#draggableList = Array.from(e.target.parentNode.children)
-    this.#index = this.#draggableList.findIndex( element => element === this.#dragged )
+    this.#draggableList = Array.from(e.target.parentNode.children);
+    this.#index = this.#draggableList.findIndex( element => element === this.#dragged );
   }
   drop(e){
     const target = (e.target.tagName === "P") ? e.target.parentNode: e.target;

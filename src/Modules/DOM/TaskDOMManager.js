@@ -8,7 +8,7 @@ class TaskDOMManager {
   constructor(taskElement) {
     this.#tasksElement = taskElement;
     this.#tasksPlaceholder = document.createDocumentFragment();
-    this.make()
+    this.make();
   }
   make() {
     this.#tasksPlaceholder.appendChild(document.createElement("div"));
@@ -33,14 +33,14 @@ class TaskDOMManager {
     this.currentProject = project;
     this.tasksHeaderTitle.textContent = project.name;
     this.tasksHeaderTitle.dataset.projectId = project.id;
-    this.clearTasksList()
-    project.tasks.forEach(this.addTask.bind(this))
+    this.clearTasksList();
+    project.tasks.forEach(this.addTask.bind(this));
   }
   addTask(task){
     this.#tasksContainer.appendChild(document.createElement("div"));
     const TaskDiv = this.#tasksContainer.lastChild;
     TaskDiv.id = task.id;
-    TaskDiv.appendChild(document.createElement("input"))
+    TaskDiv.appendChild(document.createElement("input"));
     TaskDiv.lastChild.type="checkbox";
     TaskDiv.appendChild(document.createElement("p"));
     TaskDiv.lastChild.textContent = task.name;
@@ -59,7 +59,7 @@ class TaskDOMManager {
     while (taskElement.firstChild){
       taskElement.removeChild(taskElement.firstChild);
     }
-    taskElement.appendChild(document.createElement("input"))
+    taskElement.appendChild(document.createElement("input"));
     taskElement.lastChild.type="checkbox";
     taskElement.appendChild(document.createElement("p"));
     taskElement.lastChild.textContent = task.name;
@@ -80,7 +80,7 @@ class TaskDOMManager {
     }
   }
   deleteTask(id){
-    document.getElementById(id).remove()
+    document.getElementById(id).remove();
   }
   
   get openProjectModalButton(){

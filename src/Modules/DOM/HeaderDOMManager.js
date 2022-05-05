@@ -1,10 +1,5 @@
 class HeaderDOMManager {
-  #parent
-  #targetElement
-  #bodyElement
   #headerPlaceholder
-  #footerElement
-  #mainElement
   #headerElement
   constructor(headerElement) {
     this.#headerElement = headerElement;
