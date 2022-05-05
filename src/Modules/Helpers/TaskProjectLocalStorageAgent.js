@@ -15,15 +15,26 @@ class LocalStorageAgent {
       return projects.map(this.reassociateProjects.bind(this));
     }
   }
-  reassociateProjects(project){
-    const projectReassociated = Object.assign(new this.projectTemplate(), project);
-    projectReassociated.tasks = projectReassociated.tasks.map(this.reassociateTasks.bind(this));
+  reassociateProjects(project) {
+    const projectReassociated = Object.assign(
+      new this.projectTemplate(),
+      project
+    );
+    projectReassociated.tasks = projectReassociated.tasks.map(
+      this.reassociateTasks.bind(this)
+    );
     return projectReassociated;
   }
-  reassociateTasks(task){
+  reassociateTasks(task) {
     const taskReassociated = Object.assign(new this.taskTemplate(), task);
-    taskReassociated.startDate = taskReassociated.startDate === "" ? "": new Date(taskReassociated.startDate);
-    taskReassociated.endDate = taskReassociated.startDate === "" ? "": new Date(taskReassociated.endDate);
+    taskReassociated.startDate =
+      taskReassociated.startDate === ""
+        ? ""
+        : new Date(taskReassociated.startDate);
+    taskReassociated.endDate =
+      taskReassociated.startDate === ""
+        ? ""
+        : new Date(taskReassociated.endDate);
     return taskReassociated;
   }
   clear() {

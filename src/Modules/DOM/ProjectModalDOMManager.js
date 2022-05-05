@@ -6,54 +6,62 @@ class ProjectModalDOMManager {
     this.#projectModalElement = projectModalElement;
     this.#projectModalPlaceholder = document.createDocumentFragment();
     this.make();
-    document.getElementById("projectModalCloseButton").addEventListener("click", ()=> this.#projectModalElement.close());
+    document
+      .getElementById('projectModalCloseButton')
+      .addEventListener('click', () => this.#projectModalElement.close());
   }
+
   make() {
-    this.#projectModalPlaceholder.appendChild(document.createElement("form"));
+    this.#projectModalPlaceholder.appendChild(document.createElement('form'));
     const projectModalForm = this.#projectModalPlaceholder.lastChild;
-    projectModalForm.id = "projectModalForm";
-    projectModalForm.setAttribute("method", "dialog");
-    projectModalForm.appendChild(document.createElement("h1"));
-    projectModalForm.lastChild.id="projectModalTitle";
-    projectModalForm.lastChild.textContent = "Project Info";
-    projectModalForm.appendChild(document.createElement("label"));
-    projectModalForm.lastChild.for = "projectModalProjectName";
-    projectModalForm.lastChild.textContent = "project name"
-    projectModalForm.lastChild.id = "projectModalProjectNameLabel";
-    projectModalForm.appendChild(document.createElement("input"));
-    projectModalForm.lastChild.id = "projectModalProjectName";
-    projectModalForm.lastChild.value = "project name"
-    projectModalForm.lastChild.name = "name";
-    projectModalForm.appendChild(document.createElement("input"));
-    projectModalForm.lastChild.id = "projectModalAcceptButton";
-    projectModalForm.lastChild.type = "submit";
-    projectModalForm.lastChild.value = "accept";
-    projectModalForm.appendChild(document.createElement("input"));
-    projectModalForm.lastChild.id = "projectModalCloseButton";
-    projectModalForm.lastChild.type = "button";
-    projectModalForm.lastChild.value = "close";
-    projectModalForm.appendChild(document.createElement("input"));
-    projectModalForm.lastChild.id = "projectModalDeleteButton";
-    projectModalForm.lastChild.type = "button";
-    projectModalForm.lastChild.value = "delete";
+    projectModalForm.id = 'projectModalForm';
+    projectModalForm.setAttribute('method', 'dialog');
+    projectModalForm.appendChild(document.createElement('h1'));
+    projectModalForm.lastChild.id = 'projectModalTitle';
+    projectModalForm.lastChild.textContent = 'Project Info';
+    projectModalForm.appendChild(document.createElement('label'));
+    projectModalForm.lastChild.for = 'projectModalProjectName';
+    projectModalForm.lastChild.textContent = 'project name';
+    projectModalForm.lastChild.id = 'projectModalProjectNameLabel';
+    projectModalForm.appendChild(document.createElement('input'));
+    projectModalForm.lastChild.id = 'projectModalProjectName';
+    projectModalForm.lastChild.value = 'project name';
+    projectModalForm.lastChild.name = 'name';
+    projectModalForm.appendChild(document.createElement('input'));
+    projectModalForm.lastChild.id = 'projectModalAcceptButton';
+    projectModalForm.lastChild.type = 'submit';
+    projectModalForm.lastChild.value = 'accept';
+    projectModalForm.appendChild(document.createElement('input'));
+    projectModalForm.lastChild.id = 'projectModalCloseButton';
+    projectModalForm.lastChild.type = 'button';
+    projectModalForm.lastChild.value = 'close';
+    projectModalForm.appendChild(document.createElement('input'));
+    projectModalForm.lastChild.id = 'projectModalDeleteButton';
+    projectModalForm.lastChild.type = 'button';
+    projectModalForm.lastChild.value = 'delete';
     this.#projectModalElement.appendChild(this.#projectModalPlaceholder);
   }
-  updateTargetProject(project){
+
+  updateTargetProject(project) {
     this.targetProject = project;
-    document.querySelector("#projectModalProjectName").value = project.name;
-    this.#projectModalElement.setAttribute("data-projectID", project.id);
+    this.#projectModalElement.querySelector('#projectModalProjectName').value = project.name;
+    this.#projectModalElement.setAttribute('data-projectID', project.id);
   }
+
   get acceptButton() {
-    return document.getElementById("projectModalAcceptButton");
+    return this.#projectModalElement.getElementById('projectModalAcceptButton');
   }
+
   get closeButton() {
-    return document.getElementById("projectModalCloseButton");
+    return this.#projectModalElement.getElementById('projectModalCloseButton');
   }
-  get deleteButton(){
-    return document.getElementById("projectModalDeleteButton");
+
+  get deleteButton() {
+    return this.#projectModalElement.getElementById('projectModalDeleteButton');
   }
-  get form(){
-    return document.getElementById("projectModalForm");
+
+  get form() {
+    return this.#projectModalElement.getElementById('projectModalForm');
   }
 }
 

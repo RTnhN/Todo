@@ -9,21 +9,25 @@ class Task {
   status;
   priority;
   parentProject;
-  constructor(properties){
+  constructor(properties) {
     this.id = short.generate();
-    this.name = "";
-    this.startDate = "";
-    this.endDate = "";
-    this.description = "";
-    this.status = "";
-    this.priority = "";
+    this.name = '';
+    this.startDate = '';
+    this.endDate = '';
+    this.description = '';
+    this.status = '';
+    this.priority = '';
     this.updateTask(properties);
   }
-  updateTask(properties){
-    if (!properties) return
-    Object.entries(properties).forEach(([key,value]) => {if (key !== "id") this[key] = value});
+
+  updateTask(properties) {
+    if (!properties) return;
+    Object.entries(properties).forEach(([key, value]) => {
+      if (key !== 'id') this[key] = value;
+    });
   }
-  toString(){
+
+  toString() {
     return this.name;
   }
 }
